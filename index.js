@@ -8,7 +8,7 @@ console.log(process.env.MONGO_URL);
 
 const app = express(); // called imported package express we will get app
 
-const PORT = 4000;
+const PORT = process.env.PORT; // Autp assign PORT
 
 // Connection
 

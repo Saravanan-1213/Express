@@ -2,7 +2,7 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
-import moviesRouter from "./routes/movies route.js";
+import moviesRouter from "./services/movies.route.js";
 dotenv.config();
 
 console.log(process.env.MONGO_URL);

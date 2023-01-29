@@ -1,11 +1,12 @@
 import express from "express";
+
 import {
   getMoviesById,
   createMovies,
   getMovies,
   deleteMovieById,
   updateMovieById,
-} from "../routes/services.route.js";
+} from "../services/movies.services.js";
 const router = express.Router();
 
 // task-2 http://localhost:4000/movies/99

@@ -2,7 +2,9 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
-import moviesRouter from "./services/movies.route.js";
+import moviesRouter from "./routes/movies.route.js";
+import userRouter from "./routes/user.route.js";
+
 dotenv.config();
 
 console.log(process.env.MONGO_URL);
@@ -38,6 +40,8 @@ app.get("/", function (request, response) {
 // });
 
 app.use("/movies", moviesRouter);
+app.use("/user", userRouter);
+
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
 
 export { client };

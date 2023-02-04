@@ -1,5 +1,5 @@
 import express from "express";
-
+import { auth } from "../middleware/auth.js";
 import {
   getMoviesById,
   createMovies,
@@ -11,8 +11,20 @@ const router = express.Router();
 
 // task-2 http://localhost:4000/movies/99
 
+// FIND ALL movies form DB
+
+router.get("/", auth, async function (request, response) {
+  //db.movies.find({})
+
+  // cursor = > Pagination | cursor => Array => toArray
+  const movies = await getMovies();
+  console.log(movies);
+
+  response.send(movies);
+});
+
 // GET movies using POSTMAN & FindOne
-router.get("/:id", async function (request, response) {
+router.get("/:id", auth, async function (request, response) {
   const { id } = request.params;
   // db.movies.findOne({ id: 99 });
   // const movie = movies.find((mv) => mv.id == id);
@@ -25,7 +37,7 @@ router.get("/:id", async function (request, response) {
 
 // POST(create) movies using POSTMAN // post => request
 
-router.post("/", async function (request, response) {
+router.post("/", auth, async function (request, response) {
   const data = request.body;
   console.log(data);
   //db.movies.insertMany(data);
@@ -35,18 +47,6 @@ router.post("/", async function (request, response) {
   //   ? response.send(movies)
   //   : response.status(404).send({ Message: "Movie not found" });
   response.send(result);
-});
-
-// FIND ALL movies form DB
-
-router.get("/", async function (request, response) {
-  //db.movies.find({})
-
-  // cursor = > Pagination | cursor => Array => toArray
-  const movies = await getMovies();
-  console.log(movies);
-
-  response.send(movies);
 });
 
 // DELETE moives

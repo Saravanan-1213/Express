@@ -4,6 +4,7 @@ import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
 import moviesRouter from "./routes/movies.route.js";
 import userRouter from "./routes/user.route.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ console.log("Mongo is Connected");
 
 // MiddleWare is express.json() => convert json to javascript.It is an inbuilt middleware
 app.use(express.json());
+app.use(cors());
 
 app.get("/", function (request, response) {
   response.send("🙋‍♂️, 🌏 🎊✨🤩✨✨✨✨✨✨✨HELLO WORLD  !!!");
